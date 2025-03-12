@@ -1,5 +1,15 @@
 # task.py
 
+# [
+#     {"index": 1,"name": "Clean the room ", "status": True },
+    
+# ]    
+
+# [
+#  task = Task(index=1, name="Clean the room", status="미완료")
+# ]
+
+
 class Task:
     def __init__(self, index, name, status="미완료"):
         """할 일 초기화"""

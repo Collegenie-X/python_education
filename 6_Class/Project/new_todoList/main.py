@@ -7,17 +7,38 @@ import json
 from task import Task
 
 
+# [
+#     {
+#         "index": 1,
+#         "name": "python 공부하기",
+#         "status": "미완료"
+#     }, 
+#     {
+#         "index": 2,
+#         "name": "python 심화 과정",
+#         "status": "미완료"
+#     }
+# ]
+
 def load_from_json():
     """JSON 파일에서 할 일 목록 불러오기"""
     try:
         with open("tasks.json", "r", encoding="utf-8") as f:
-            tasks_data = json.load(f)
-            tasks = [
-                Task(task["index"], task["name"], task["status"]) for task in tasks_data
-            ]
-            index_counter = tasks[-1].index + 1 if tasks else 1
-            return tasks, index_counter
-    except FileNotFoundError:
+            tasks_data = list(json.load(f)) 
+    
+
+            task_list = [] 
+            for task in tasks_data : 
+                task_list.append(task["index"],task["name"],task["status"])
+
+            index_counter = 1
+            if task_list : 
+                index_counter =  task_list[-1].index + 1 
+    
+            return task_list, index_counter
+        
+    except Exception as error:
+        print("error:",error) 
         return [], 1
 
 
